@@ -8,6 +8,7 @@ Printing template [here](https://wizzlerr.github.io/bingo/)
 2. Game is locked every friday at 4:30 PM CEST
 3. Person with most points wins
 4. Declaring scores should be done by going to active week issue and putting comment
+5. **Person who collects ultimate bingo is allowed to go home**
 
 **Bingo types**
 
@@ -15,6 +16,7 @@ Printing template [here](https://wizzlerr.github.io/bingo/)
 2. Bingo - you mark 5 consecutive fields
 3. King bingo - you mark at least 2 bingos at the same time
 4. Lucky bingo - you mark more than 12 fields
+5. Ultimate bingo - you mark all fields
 
 **Scoring**
 
@@ -22,6 +24,7 @@ Printing template [here](https://wizzlerr.github.io/bingo/)
 2. Bingo - 2 points
 3. King bingo - 2^(number of bingos)
 4. Lucky bingo - 3 points
+5. Ultimate bingo - 10 points
 
 **Marking/Crossing out**
 
