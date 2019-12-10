@@ -1,64 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-td {
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  padding: 20px;
-  font-size: 10px;
-}
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <title>Bingo</title>
+  <style>
+    html, body {
+      font-family: 'Lato', sans-serif;
+    }
 
-.bingo {
-	background-color: orange;
-    color: white;
-    font-size: 1em;
-}
+    table, td {
+      border: 1px solid #000;
+    }
 
-</style>
+    td {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      padding: 20px;
+      font-size: 10px;
+    }
+
+    .bingo {
+      background-color: orange;
+      color: white;
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+  </style>
 </head>
 <body>
 
-<table id='table' border="1">
+<table id='table'>
 </table>
 
 <script>
-var questions = ['CASSANDRA CONNECTION DOWN', 'ZOO KEEPER DOWN', 'PCC-SERVER-EMAIL-STANDALONE FAILS', 'DEPLOYED FAILED BUT ITS "OK"', 
-		 'CATEGORY AREA MISSING IN DB', 'SIMULATOR DOWN', 'SOMEONE HAS DIFFERENT CATEGORY-AREA TEMPLATE IN USER SETTINGS', 
-		 'ANY COMPONENT IS DOWN', 'TIBCO CONNECTION DOWN', 'CANNOT ACHIEVE CONSISTENCY', 'WEB SOCKETS DOWN', 
-		 'UNIX TEAM MENTIONED IN EMAIL', 'LOADBALANCER FAILS',' ENV SUPPORT "FIXED" ISSUE', 
-		 'SOMEONE DOES NOT READ RESPONSE MESSAGE', 'WATCHLIST DOES NOT WORK', 'ENTITLEMENT PROBLEMS', 'ADDRESS ALREADY IN USE', 
-		 'GOOD JOB GUYS','SOMEONE TRIES TO TEST ALERTS BUT EVERY ENV IS FAILING', 'SMALL TALK ON CALL', 
-		 'POSTMAN AND CHROME OPENED AT THE SAME TIME', 'CERTIFICATE PROBLEM', '403 FORBIDDEN', 'JANUSZ FIX IN CODE', 
-		 'PROD ISSUE', ' MOONSHOT PROBLEMS', 
-		 'SOMEONE SENDS ENV SUPPORT STEP-BY-STEP SOLUTION AND AFTER 30 MINUTES THEY KNOW HOW TO FIX IT', 
-		 'GLOBAL BROKER INCIDENT', 'NOT FOLLOWING RELEASE NOTES', 'PROPERTY SET TO REALLY STRANGE VALUE', 
-		 'RETRO/SPRINT PLANNING POSTPONED', 'AUTOMATION FRAMEWORK FAILS', 'JEDIS DOWN', 'DEPLOYMENT FAILED', 'WEBLAUNCHER ISSUE',
-		 'NGINX ISSUE', 'CONTENT TEAM ARGUES', 'DEPLOY TOOL FAILS TO PERFORM ANY ACTION'];
+  const questions = [
+    // environment issues
+    'CASSANDRA CONNECTION DOWN',
+    'ZOO KEEPER DOWN',
+    'PCC-SERVER-EMAIL-STANDALONE FAILS',
+    'ANY COMPONENT IS DOWN',
+    'TIBCO CONNECTION DOWN',
+    'LOADBALANCER FAILS',
+    ' ENV SUPPORT "FIXED" ISSUE',
+    'WEB SOCKETS DOWN',
+    'ADDRESS ALREADY IN USE',
+    'JEDIS DOWN',
+    'CANNOT ACHIEVE CONSISTENCY',
+    'NGINX ISSUE',
+    'ENTITLEMENT PROBLEMS',
+    'CERTIFICATE PROBLEM',
+    '403 FORBIDDEN',
+    'SOMEONE SENDS ENV SUPPORT STEP-BY-STEP SOLUTION AND AFTER 30 MINUTES THEY KNOW HOW TO FIX IT',
+    'GLOBAL BROKER INCIDENT',
 
+    // frontend issues
+    'WATCHLIST DOES NOT WORK',
+    'WEBLAUNCHER ISSUE',
 
-var table = document.querySelector('#table');
+    // backend issues
+    'CATEGORY AREA MISSING IN DB',
+    'SIMULATOR DOWN',
 
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
+    // qa issues
+    'AUTOMATION FRAMEWORK FAILS',
 
-for (var i = 5; i > 0; i--) {
-      var row = document.createElement('tr');
+    // Moonshot issues
+    ' MOONSHOT PROBLEMS',
 
-      for (var b = 5; b > 0; b--) {
-        elem = document.createElement('td');
-        var index = getRandomInt(0, questions.length - 1 );
-        
-        elem.innerHTML = b === 3 && i === 3 ? 'BINGO'
-        : "" + questions.splice(index, 1);
-		
-		elem.setAttribute('class', b === 3 && i === 3 ? 'bingo' : '');
-        row.appendChild(elem)
+    // Deploy & release issues
+    'DEPLOYMENT FAILED',
+    'DEPLOYED FAILED BUT ITS "OK"',
+    'DEPLOY TOOL FAILS TO PERFORM ANY ACTION',
+    'NOT FOLLOWING RELEASE NOTES',
+    'PROPERTY SET TO REALLY STRANGE VALUE',
+
+    // team
+    'SOMEONE DOES NOT READ RESPONSE MESSAGE',
+    'GOOD JOB GUYS',
+    'SOMEONE TRIES TO TEST ALERTS BUT EVERY ENV IS FAILING',
+    'POSTMAN AND CHROME OPENED AT THE SAME TIME',
+    'JANUSZ FIX IN CODE',
+    'RETRO/SPRINT PLANNING POSTPONED',
+
+    // other
+    'SOMEONE HAS DIFFERENT CATEGORY-AREA TEMPLATE IN USER SETTINGS',
+    'SMALL TALK ON CALL',
+    'PROD ISSUE',
+  ];
+
+  const table = document.querySelector('#table');
+
+  const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+  const isBingoCell = (b, i) => b === 3 && i === 3;
+
+  for (let i = 5; i > 0; i--) {
+    const row = document.createElement('tr');
+
+    for (let b = 5; b > 0; b--) {
+      const elem = document.createElement('td');
+      if (isBingoCell(b, i)) {
+        elem.classList.add('bingo');
       }
-      table.appendChild(row);
+      const index = getRandomInt(0, questions.length - 1);
+
+      elem.innerHTML = isBingoCell(b, i) ? 'BINGO'
+        : "" + questions.splice(index, 1);
+
+      row.appendChild(elem)
     }
+    table.appendChild(row);
+  }
 </script>
 
 </body>
