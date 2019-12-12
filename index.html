@@ -17,7 +17,7 @@
       height: 100px;
       text-align: center;
       padding: 20px;
-      font-size: 10px;
+      font-size: 15px;
     }
 
     .bingo {
@@ -59,6 +59,7 @@
     // frontend issues
     'WATCHLIST DOES NOT WORK',
     'WEBLAUNCHER ISSUE',
+    "cant't base on any environment",
 
     // backend issues
     'CATEGORY AREA MISSING IN DB',
@@ -108,7 +109,7 @@
       const index = getRandomInt(0, questions.length - 1);
 
       elem.innerHTML = isBingoCell(b, i) ? 'BINGO'
-        : "" + questions.splice(index, 1);
+        : "" + questions.splice(index, 1)[0].toLowerCase();
 
       row.appendChild(elem)
     }
